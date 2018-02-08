@@ -6,6 +6,21 @@ import TrendsArea from './components/TrendsArea'
 import Tweet from './components/Tweet'
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      novoTweet: ''
+    }
+  }
+  // pegaTextoDoTweet(event) {
+  //   const novoTweet = event.target.value
+  //   console.log(novoTweet)
+  //   // if(novoTweet.length > 140) {
+  //   //   // faça algo
+  //   // } else {
+  //   //   // faça outro algo..
+  //   // }
+  // }
   render() {
     return (
       <Fragment>
@@ -15,10 +30,14 @@ class App extends Component {
                 <Widget>
                     <form className="novoTweet">
                         <div className="novoTweet__editorArea">
-                            <span className="novoTweet__status">0/140</span>
-                            <textarea className="novoTweet__editor" placeholder="O que está acontecendo?"></textarea>
+                            <span className={`novoTweet__status ${ this.state.novoTweet.length > 140 ? 'novoTweet__status--invalido' : '' }`}>{ this.state.novoTweet.length }/140</span>
+                            <textarea
+                                      value={ this.state.novoTweet }
+                                      onInput={ (event) => this.setState({ novoTweet: event.target.value }) }
+                                      className="novoTweet__editor"
+                                      placeholder="O que está acontecendo?"></textarea>
                         </div>
-                        <button type="submit" className="novoTweet__envia">Tweetar</button>
+                        <button type="submit" disabled={ this.state.novoTweet.length > 140 ? true : false } className="novoTweet__envia">Tweetar</button>
                     </form>
                 </Widget>
                 <Widget>
