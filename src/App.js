@@ -9,8 +9,11 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      novoTweet: ''
+      novoTweet: '',
+      tweets: []
     }
+
+    this.adicionaTweet = this.adicionaTweet.bind(this)
   }
   // pegaTextoDoTweet(event) {
   //   const novoTweet = event.target.value
@@ -21,6 +24,17 @@ class App extends Component {
   //   //   // faça outro algo..
   //   // }
   // }
+  adicionaTweet(event) {
+    event.preventDefault()
+    const novoTweet = this.state.novoTweet
+    const tweetsAntigos = this.state.tweets
+    if(novoTweet) {
+      this.setState({
+        tweets: [...tweetsAntigos, novoTweet],
+      })
+    }
+  }
+
   render() {
     return (
       <Fragment>
@@ -28,7 +42,7 @@ class App extends Component {
         <div className="container">
             <Dashboard>
                 <Widget>
-                    <form className="novoTweet">
+                    <form className="novoTweet" onSubmit={ this.adicionaTweet }>
                         <div className="novoTweet__editorArea">
                             <span className={`novoTweet__status ${ this.state.novoTweet.length > 140 ? 'novoTweet__status--invalido' : '' }`}>{ this.state.novoTweet.length }/140</span>
                             <textarea
@@ -47,7 +61,7 @@ class App extends Component {
             <Dashboard posicao="centro">
                 <Widget>
                     <div className="tweetsArea">
-                        <Tweet />
+                        { this.state.tweets.map( (tweetTexto, index) => <Tweet key={tweetTexto + index} texto={tweetTexto} /> ) }
                     </div>
                 </Widget>
             </Dashboard>
