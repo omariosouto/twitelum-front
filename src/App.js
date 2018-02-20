@@ -74,7 +74,7 @@ class App extends Component {
                 <Widget>
                     <div className="tweetsArea">
                         { this.state.tweets.length === 0 ? 'Nenhum tweet encontrado :(' : '' }
-                        { this.state.tweets.map( (tweetTexto, index) => <Tweet key={tweetTexto + index} texto={tweetTexto} /> ) }
+                        { this.state.tweets.map( (tweetInfo, index) => <Tweet key={tweetInfo._id} tweetInfo={tweetInfo} /> ) }
                     </div>
                 </Widget>
             </Dashboard>
