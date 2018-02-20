@@ -16,6 +16,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 // React Router
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+// Faltou falar do link
 
 
 class UsuarioInterna extends Component {
@@ -26,14 +27,18 @@ class UsuarioInterna extends Component {
                 nome: ''
             }
         }
-
     }
-
+    
     componentWillMount() {
         fetch('http://localhost:3001/usuarios/' + this.props.match.params.usuario)
         .then(response => response.json())
         .then((usuario) => {
+            if(!usuario)
+                throw new Error()
             this.setState({ usuario })
+        })
+        .catch(() => {
+            this.props.history.push('/')
         })
     }
 
