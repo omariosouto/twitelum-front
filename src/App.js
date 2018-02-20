@@ -15,6 +15,7 @@ class App extends Component {
 
     this.adicionaTweet = this.adicionaTweet.bind(this)
   }
+
   // pegaTextoDoTweet(event) {
   //   const novoTweet = event.target.value
   //   console.log(novoTweet)
@@ -29,9 +30,20 @@ class App extends Component {
     const novoTweet = this.state.novoTweet
     const tweetsAntigos = this.state.tweets
     if(novoTweet) {
-      this.setState({
-        tweets: [...tweetsAntigos, novoTweet],
+
+      fetch(`http://localhost:3001/tweets`, {
+        method: 'POST',
+        body: JSON.stringify({ conteudo: novoTweet, login: 'omariosouto' })
       })
+      .then((response) => response.json())
+      .then((novoTweet) => {
+          console.log(novoTweet)
+          this.setState({
+            tweets: [novoTweet, ...tweetsAntigos],
+            novoTweet: ''
+          })
+      })
+
     }
   }
 
@@ -61,7 +73,8 @@ class App extends Component {
             <Dashboard posicao="centro">
                 <Widget>
                     <div className="tweetsArea">
-                        { this.state.tweets.map( (tweetTexto, index) => <Tweet key={tweetTexto + index} texto={tweetTexto} /> ) }
+                        { this.state.tweets.length === 0 ? 'Nenhum tweet encontrado :(' : '' }
+                        { this.state.tweets.map( (tweet, index) => <Tweet key={tweet.conteudo + index} texto={tweet.conteudo} /> ) }
                     </div>
                 </Widget>
             </Dashboard>
