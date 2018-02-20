@@ -16,6 +16,15 @@ class App extends Component {
     this.adicionaTweet = this.adicionaTweet.bind(this)
   }
 
+  componentDidMount() {
+    fetch(`http://localhost:3001/tweets`)
+      .then(response => response.json())
+      .then((tweets) => {
+        this.setState({
+          tweets
+        })
+      })
+  }
   // pegaTextoDoTweet(event) {
   //   const novoTweet = event.target.value
   //   console.log(novoTweet)
