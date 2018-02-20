@@ -30,7 +30,7 @@ class App extends Component {
     const tweetsAntigos = this.state.tweets
     if(novoTweet) {
       this.setState({
-        tweets: [...tweetsAntigos, novoTweet],
+        tweets: [novoTweet,...tweetsAntigos],
         novoTweet: ''
       })
     }
