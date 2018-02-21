@@ -16,7 +16,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 // React Router
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-// Faltou falar do link
+// O link vem do App.js
 
 
 class UsuarioInterna extends Component {

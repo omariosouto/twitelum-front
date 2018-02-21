@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import './tweet.css'
 
 class Tweet extends Component {
@@ -9,7 +10,7 @@ class Tweet extends Component {
                 <div className="tweet__cabecalho">
                     <img className="tweet__fotoUsuario" src={ tweetInfo.usuario.foto } alt="" />
                     <span className="tweet__nomeUsuario">{ tweetInfo.usuario.nome }</span>
-                    <a href=""><span className="tweet__userName">@{ tweetInfo.usuario.login }</span></a>
+                    <Link to={`/${tweetInfo.usuario.login}`}><span className="tweet__userName">@{ tweetInfo.usuario.login }</span></Link>
                 </div>
                 <p className="tweet__conteudo">{ tweetInfo.conteudo }</p>
                 <footer className="tweet__footer">
