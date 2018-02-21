@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 // CSS Global
@@ -11,46 +11,13 @@ import './assets/css/iconHeart.css'
 import './assets/css/novoTweet.css'
 // import './index.css';
 
-
+// Componentes que são páginas
 import App from './App';
+import UsuarioInterna from './pages/UsuarioInterna'
+
 import registerServiceWorker from './registerServiceWorker';
 // React Router
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-// O link vem do App.js
-
-
-class UsuarioInterna extends Component {
-    constructor() {
-        super()
-        this.state = {
-            usuario: {
-                nome: ''
-            }
-        }
-    }
-    
-    componentWillMount() {
-        fetch('http://localhost:3001/usuarios/' + this.props.match.params.usuario)
-        .then(response => response.json())
-        .then((usuario) => {
-            if(!usuario)
-                throw new Error()
-            this.setState({ usuario })
-        })
-        .catch(() => {
-            this.props.history.push('/')
-        })
-    }
-
-    render() {
-        return (
-            <div>
-                <h1>{ this.state.usuario.nome }</h1>
-                Página Interna
-            </div>
-        )
-    }
-}
 
 
 ReactDOM.render(
