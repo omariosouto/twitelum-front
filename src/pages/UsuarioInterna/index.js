@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Helmet from 'react-helmet'
 
 class UsuarioInterna extends Component {
     constructor() {
@@ -23,6 +24,7 @@ class UsuarioInterna extends Component {
     render() {
         return (
             <div>
+                <Helmet title={`@${this.state.usuario.login} - Twitelum`} />
                 <h1>{ this.state.usuario.nome }</h1>
                 Página Interna
             </div>

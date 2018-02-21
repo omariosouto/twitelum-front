@@ -4,6 +4,7 @@ import Dashboard from './components/Dashboard'
 import Widget from './components/Widget'
 import TrendsArea from './components/TrendsArea'
 import Tweet from './components/Tweet'
+import Helmet from 'react-helmet'
 
 class App extends Component {
   constructor() {
@@ -59,6 +60,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
+        <Helmet title="Dashboard - Twitelum" />
         <Cabecalho usuario="@omariosouto" />
         <div className="container">
             <Dashboard>
