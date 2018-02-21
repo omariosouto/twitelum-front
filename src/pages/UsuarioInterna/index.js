@@ -12,7 +12,7 @@ class UsuarioInterna extends Component {
     }
     
     componentWillMount() {
-        fetch('http://localhost:3001/usuarios/' + this.props.match.params.usuario)
+        fetch('http://twitelum-api.herokuapp.com/usuarios/' + this.props.match.params.usuario)
         .then(response => response.json())
         .then((usuario) => {
             if(!usuario)

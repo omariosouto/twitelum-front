@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:3001/tweets`)
+    fetch(`http://twitelum-api.herokuapp.com/tweets`)
       .then(response => response.json())
       .then((tweets) => {
         this.setState({
@@ -41,7 +41,7 @@ class App extends Component {
     const tweetsAntigos = this.state.tweets
     if(novoTweet) {
 
-      fetch(`http://localhost:3001/tweets`, {
+      fetch(`http://twitelum-api.herokuapp.com/tweets`, {
         method: 'POST',
         body: JSON.stringify({ conteudo: novoTweet, login: 'omariosouto' })
       })
